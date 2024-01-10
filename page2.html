@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Bookmarks</title>
+</head>
+<body>
+
+<h2>Your Bookmarks:</h2>
+<ul id="bookmarks"></ul>
+
+<script>
+  function displayBookmarks() {
+    var bookmarksContainer = document.getElementById('bookmarks');
+    var existingBookmarks = JSON.parse(getCookie('bookmarks')) || [];
+
+    // Populate the list with bookmarks
+    existingBookmarks.forEach(function(bookmark) {
+      var listItem = document.createElement('li');
+      listItem.textContent = bookmark;
+      bookmarksContainer.appendChild(listItem);
+    });
+  }
+
+  // Cookie function
+  function getCookie(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return decodeURIComponent(match[2]);
+  }
+
+  // Initial update of the bookmark list
+  displayBookmarks();
+</script>
+
+</body>
+</html>
